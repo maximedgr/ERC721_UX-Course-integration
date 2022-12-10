@@ -35,7 +35,7 @@ function FakeNefturians(){
             <h2><b>FakeNefturian</b></h2>
             {price &&
                 <>
-                    <h3>FakeNefturian Price +some fees :</h3>
+                    <h3>FakeNefturian Price :</h3>
                     <div><b>{web3.utils.fromWei(price, 'ether')} ETH</b></div> 
                     <br></br>
                     <br></br>

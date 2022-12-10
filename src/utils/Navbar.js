@@ -65,6 +65,9 @@ function Navbar(){
               <li>
                 <NavLink to={`/fakeNefturians/${account}`}>Fake Nefturian user wallet</NavLink>
               </li>
+              <li>
+                <NavLink to="/fakeMeebits">Fake Meebits</NavLink>
+              </li>
             </ul>
           </nav>
           </>
