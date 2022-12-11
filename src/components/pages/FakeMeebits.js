@@ -3,11 +3,15 @@ import { IpfsImage } from 'react-ipfs-image';
 import Web3 from "web3";
 import FakeMeebitsABI from "../ABI/FakeMeebits.json"
 import FakeMeebitsClaimerABI from "../ABI/FakeMeebitsClaimer.json"
+import Signatures from "../ABI/output-sig.json"
 
 function FakeMeebits(){
 
+    //states
     const [account, setAccount] = useState(null);
     const [chain, setChain] = useState(null); 
+    const[tokenId, setTokenId] = useState(null);
+
 
      //contract zone 
      let web3 = new Web3(window.ethereum);
@@ -68,14 +72,37 @@ function FakeMeebits(){
     }
 
 
-     async function Mint(){
+    async function Mint(){
+    // check that we can mint the token
+    if(await contract_claimer.methods.tokensThatWereClaimed(tokenId).call()==true){
+        alert("This token has alredy been mint, change tokenId !"); //pop up
+        throw Error("already minted, change tokenId !");  
+    }
+    else 
+    {
+        console.log("good to mint");
+        const _signature = Signatures[tokenId].signature;  
+        await contract_claimer.methods.claimAToken(tokenId,_signature).send({from: account});
+        alert("token has been minted. Owner : "+account); //pop up
+    }
+    }
+
+    async function PrepareMint(){
+        await activate();
+        await checkNetwork();
+        console.log(tokenId);
+        await Mint();
+        console.log("token has been minted. Owner : "+account);
+    }
+    const handleChamp = (event)=>{
+        setTokenId(event.target.value)
      }
- 
 
     return (
         <div>
         <h2>Fake Meebits</h2>
-        <button onClick={Mint}>Mint Meebits</button>
+        <input type="number"value={tokenId}  onChange={e=>handleChamp(e)}/>
+        <button onClick={PrepareMint}>Mint Meebits</button>
         </div>                    
     )
     

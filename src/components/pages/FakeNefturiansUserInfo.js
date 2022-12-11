@@ -6,16 +6,17 @@ import { useParams } from 'react-router-dom';
 
 
 function FakeNefturiansUserInfo(){
-    const[balance, setBalance] = useState(0);
+    const[balance, setBalance] = useState();
     const [list, setList] = useState([]);
     const [userwallet, setUserWallet] = useState();
 
     const userAddress=useParams();
+
     useEffect(() => {
         setUserWallet(userAddress.userAddress);
         getBalance();
         getBalanceAndToken();
-    }, []);
+    }, [userwallet]);
 
     //contract zone 
     const contract_abi = FakeNefturianABI.abi; 
@@ -56,13 +57,14 @@ function FakeNefturiansUserInfo(){
     }
 
     const elements = list.map(item => {
-        console.log(item);
         return (
+        <div className="boboch">
           <ul key={item.name}>
             <li>{item.name}</li>
-            { <IpfsImage hash={item.image}/>}
             <li>{item.description}</li>
+            <img src={item.image} alt="image" />
           </ul>
+        </div>
         );
       });
 

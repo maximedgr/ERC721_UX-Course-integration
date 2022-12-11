@@ -41,7 +41,7 @@ function FakeNefturians(){
                     <br></br>
                 </>
             }
-            <button onClick={BuyToken}>Buy FakeNefturian Token at floor price +some fees</button>
+            <button onClick={BuyToken}>Buy FakeNefturian Token at floor price + some fees</button>
         </div>                    
     )
     

@@ -7,7 +7,9 @@ import Connect from './utils/Connect';
 function App() {
   return (
     <div className="App">
-    <button onClick={Connect}>Connect wallet</button>
+      <div className='buttonconnect'>
+        <button onClick={Connect}>Connect wallet</button>
+      </div>
         <Router>
           <Navbar/>
           <AppRoutes />

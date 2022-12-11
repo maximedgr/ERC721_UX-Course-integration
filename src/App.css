@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-size: 16px;
 }
 
 .App-logo {
@@ -35,4 +36,102 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+li{
+  list-style: none;
+  display: inline-block;
+  margin-right: 20px;
+  margin-bottom:20px ;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+}
+ul, a{
+  list-style: none;
+  margin-bottom:20px ;
+  color: aliceblue;
+  text-decoration: none;
+}
+ul, a:hover{
+  color: #61dafb;
+  text-decoration: none;
+}
+nav{
+  background-color: #282c34;
+  min-height: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: rgb(255, 255, 255);
+}
+.buttonconnect{
+  background-color: #282c34;
+  min-height: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: rgb(255, 255, 255);
+}
+button{
+  font-size: 20px;
+  border-radius: 10px;
+  border-color: #61dafb;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: whitesmoke;
+}
+
+input{
+  font-size: 20px;
+  border-radius: 10px;
+  border-color: #61dafb;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: whitesmoke;
+  margin-right: 5px;
+}
+table{
+  border: 1px solid black;
+  border-collapse: collapse;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+th{
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 10px;
+  text-align: center;
+}
+td{
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 10px;
+  text-align: center;
+}
+
+.boboch{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: whitesmoke;
+  text-align: center;
+  
+}
+.boboch img{
+  width: 50%;
+  height: 50%;
+  border-radius: 40%;
+  margin-bottom: 10px;
+}
+.boboch ul{
+  padding-left: 0px;
 }

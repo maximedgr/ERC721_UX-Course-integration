@@ -1,9 +1,11 @@
+import { NavLink } from 'react-router-dom';
+
 function NotFound(){
     return (
         <div>
-            <text>Oh somithing went wrong, not found</text>
+            <text>Oh somithing went wrong, page not found</text>
             <div>
-                <button>main page</button>
+                <button><NavLink to="/" exact>Home</NavLink></button>
             </div>
         </div>
     )
