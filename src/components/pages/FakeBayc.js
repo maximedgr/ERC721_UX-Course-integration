@@ -14,8 +14,7 @@ const isActive =false;
 
 
 useEffect(() => {
-    activate();
-    checkNetwork();
+    startup();
 }, [])
 
 // invoke to connect to wallet account
@@ -23,42 +22,74 @@ async function activate() {
   if (window.ethereum) {
     try {
       await window.ethereum.request({ method: 'eth_requestAccounts' });
-      checkAccount()
+      return checkAccount();
     } catch (err) {
+      console.log("etape 4 error")
       console.log('user did not add account...', err)
     }
   }
 }
 
+async function startup(){
+  let wib3 ,walleti= await activate();
+  let id =await checkNetwork();
+  setWeb3(wib3);
+  setAccount(walleti);
+  setChain(id);
+}
+
 // invoke to check if account is already connected
 async function checkAccount() {
-  let web3 = new Web3(window.ethereum)
-  setWeb3(web3)
-  const accounts = await web3.eth.getAccounts()
-  setAccount(accounts[0])
+  let wib3 = new Web3(window.ethereum)
+  const accounts = await wib3.eth.getAccounts()
+  return wib3,accounts[0];
 }
 
 async function checkNetwork(){
-  let web3 = new Web3(window.ethereum)
-  const chainID = await web3.eth.getChainId()
+  let wib3 = new Web3(window.ethereum)
+  const chainID = await wib3.eth.getChainId()
   if(chainID!="11155111"){
-    await switchNetwork();
+    console.log("Ma chaine ",chain)
+    await switchNetwork(wib3);
   }
-  else{
-    await setChain(chainID)
-  }
+  return chainID;
 }
 
 
-async function switchNetwork() {
-  let web3 = new Web3(window.ethereum)
-  await window.ethereum.request({
-  method: 'wallet_switchEthereumChain',
-  params: [{ chainId: '0x5' }],    // Sepolia n'est pas natif pour la fonction de metamask
-  });
-  const chainID = await web3.eth.getChainId()
-  setChain(chainID)
-}
+async function switchNetwork(web3) {
+  try {
+    console.log("etape 9")
+    await window.ethereum
+      .request({
+        method: "wallet_switchEthereumChain",
+        params: [{ chainId: web3.utils.toHex(11155111) }],
+      })
+    }
+    catch (err) {
+      if (err.code === 4902) {
+        await window.ethereum
+          .request({
+            method: "wallet_addEthereumChain",
+            params: [
+              {
+                chainName: "Sepolia Testnet",
+                chainId: web3.utils.toHex(11155111),
+                nativeCurrency: {
+                  name: "ETH",
+                  decimals: 18,
+                  symbol: "ETH",
+                },
+                rpcUrls: ["https://rpc.sepolia.dev/"],
+              },
+            ],
+          })
+      } 
+    }
+  }
+
+
+  
+  
 
 async function getFakeBAYCinfo(){
     const fakeBaycData = FakeBaycABI.networks[chain]
