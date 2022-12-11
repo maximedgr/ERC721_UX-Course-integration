@@ -135,3 +135,15 @@ td{
 .boboch ul{
   padding-left: 0px;
 }
+
+.fbinfo{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: whitesmoke;
+  text-align: center;
+}

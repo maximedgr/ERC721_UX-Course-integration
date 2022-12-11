@@ -46,10 +46,12 @@ function FakeBaycTokenInfo() {
             {image &&
                 <>
                     <IpfsImage hash={image}/>
-                    <h3>DATAS :</h3>
-                    <div>{attribute}</div>
-                    <br></br>
-                    <br></br>
+                    <div className="fbinfo">
+                        <h3>Information :</h3>
+                        <div>{attribute}</div>
+                        <br></br>
+                        <br></br>
+                    </div>
                 </>
             }
         </div>                    

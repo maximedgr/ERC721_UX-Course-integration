@@ -9,7 +9,6 @@ const [account, setAccount] = useState(null);
 const [chain, setChain] = useState(null); 
 const [web3, setWeb3] = useState(null);
 const [fakeBAYCbalance, setFakeBAYCbalance] = useState(null);
-const isActive =false;
 
 
 
@@ -24,25 +23,26 @@ async function activate() {
       await window.ethereum.request({ method: 'eth_requestAccounts' });
       return checkAccount();
     } catch (err) {
-      console.log("etape 4 error")
       console.log('user did not add account...', err)
     }
   }
 }
 
 async function startup(){
-  let wib3 ,walleti= await activate();
+  let {wib3 ,walleti}= await activate();
+  console.log(wib3,"wib3")
   let id =await checkNetwork();
   setWeb3(wib3);
   setAccount(walleti);
   setChain(id);
+  console.log(web3,"web3")
 }
 
 // invoke to check if account is already connected
 async function checkAccount() {
   let wib3 = new Web3(window.ethereum)
   const accounts = await wib3.eth.getAccounts()
-  return wib3,accounts[0];
+  return {wib3,walleti: accounts[0]};
 }
 
 async function checkNetwork(){
@@ -58,7 +58,6 @@ async function checkNetwork(){
 
 async function switchNetwork(web3) {
   try {
-    console.log("etape 9")
     await window.ethereum
       .request({
         method: "wallet_switchEthereumChain",
@@ -85,7 +84,7 @@ async function switchNetwork(web3) {
           })
       } 
     }
-  }
+}
 
 
   
